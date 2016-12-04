@@ -73,8 +73,16 @@
 		function updateGreenBoxPositionStatus()
 		{
 			console.log("Updating green box position.");
-			console.log(getCenterPositionData("greenbox"));
-			console.log(getCenterPositionData("redbox"));
+			var greenbox = getCenterPositionData("greenbox");
+			var redbox = getCenterPositionData("redbox");
+			console.log(greenbox);
+			console.log(redbox);
+
+			var currentPosition = Math.sqrt(
+				Math.pow(redbox.xaxis - greenbox.xaxis, 2)
+				+ Math.pow(redbox.yaxis - greenbox.yaxis, 2)
+			);
+			console.log(currentPosition);
 		}
 
 		function getCenterPositionData(elementName)
