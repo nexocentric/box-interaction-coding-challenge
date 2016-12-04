@@ -67,7 +67,7 @@
 		function statusFunctions()
 		{
 			console.log("Starting status functions");
-			//setInterval(updateGreenBoxPositionStatus, 500);
+			setInterval(updateGreenBoxPositionStatus, 300);
 		}
 
 		function updateGreenBoxPositionStatus()
@@ -82,6 +82,8 @@
 				Math.pow(redbox.xaxis - greenbox.xaxis, 2)
 				+ Math.pow(redbox.yaxis - greenbox.yaxis, 2)
 			);
+
+			currentPosition = currentPosition.toFixed(2);
 			
 			console.log(currentPosition);
 
@@ -119,40 +121,42 @@
 		function moveGreenBox(event)
 		{
 			var greenBox = document.getElementById("greenbox");
+			var greenBoxBounding = document.getElementById("greenbox").getBoundingClientRect();
 			var redBox = document.getElementById("redbox").getBoundingClientRect();
 			greenBox.style.position = "absolute";
 
 			var nextX = event.clientX;
 			var nextY = event.clientY;
 			console.log(redBox);
+			console.log(greenBoxBounding);
 			
 
-			var leftBoundary = redBox.x;
+			var leftBoundary = redBox.right - 504;
 			var rightBoundry = redBox.right;
 			
-			var topBoundary = redBox.y;
+			var topBoundary = redBox.bottom - 504;
 			var bottomBoundry = redBox.bottom;
 
-			if (nextX < leftBoundary)
+			if (nextX <= leftBoundary)
 			{
 				nextX = leftBoundary;
 			}
-			else if (nextX > rightBoundry)
+			
+			if (nextX >= rightBoundry)
 			{
-				nextX = rightBoundry;
+				nextX = rightBoundry - greenBoxBounding.width;
 			}
 
-			if (nextY < topBoundary)
+			if (nextY <= topBoundary)
 			{
 				nextY = topBoundary;
 			}
-			else if (nextY > bottomBoundry)
+			
+			if (nextY >= bottomBoundry)
 			{
-				nextY = bottomBoundry;
+				nextY = bottomBoundry - greenBoxBounding.height;
 			}
 
-			// greenBox.style.left = event.clientX + "px";
-			// greenBox.style.top = event.clientY + "px";
 			greenBox.style.left = nextX + "px";
 			greenBox.style.top = nextY + "px";
 		}
