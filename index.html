@@ -67,7 +67,7 @@
 		function statusFunctions()
 		{
 			console.log("Starting status functions");
-			setInterval(updateGreenBoxPositionStatus, 500);
+			//setInterval(updateGreenBoxPositionStatus, 500);
 		}
 
 		function updateGreenBoxPositionStatus()
@@ -99,6 +99,64 @@
 			};
 		}
 
+		function addListeners()
+		{
+			var box = document.getElementById("greenbox");
+			box.addEventListener("mousedown", mouseRightClickDown, false);
+			window.addEventListener("mouseup", mouseRightClickReleased, false);
+		}
+
+		function mouseRightClickReleased()
+		{
+			window.removeEventListener("mousemove", moveGreenBox, true);
+		}
+
+		function mouseRightClickDown(event)
+		{
+			window.addEventListener("mousemove", moveGreenBox, true);
+		}
+
+		function moveGreenBox(event)
+		{
+			var greenBox = document.getElementById("greenbox");
+			var redBox = document.getElementById("redbox").getBoundingClientRect();
+			greenBox.style.position = "absolute";
+
+			var nextX = event.clientX;
+			var nextY = event.clientY;
+			console.log(redBox);
+			
+
+			var leftBoundary = redBox.x;
+			var rightBoundry = redBox.right;
+			
+			var topBoundary = redBox.y;
+			var bottomBoundry = redBox.bottom;
+
+			if (nextX < leftBoundary)
+			{
+				nextX = leftBoundary;
+			}
+			else if (nextX > rightBoundry)
+			{
+				nextX = rightBoundry;
+			}
+
+			if (nextY < topBoundary)
+			{
+				nextY = topBoundary;
+			}
+			else if (nextY > bottomBoundry)
+			{
+				nextY = bottomBoundry;
+			}
+
+			// greenBox.style.left = event.clientX + "px";
+			// greenBox.style.top = event.clientY + "px";
+			greenBox.style.left = nextX + "px";
+			greenBox.style.top = nextY + "px";
+		}
+
 		window.onload = statusFunctions();
 
 	</script>
@@ -108,12 +166,15 @@
 	<div class="container-div">
 		
 		<div id="redbox" class="red-box">
-				<div id="greenbox" class="green-box" onmouseover="toggleGreenBoxHoverEffects(TOGGLE_ON)" onmouseout="toggleGreenBoxHoverEffects(TOGGLE_OFF)">
-					<span id="position-indicator" class="green-box-position-indicator">0,0</span>
-				</div>
+			<div id="greenbox" class="green-box" onmouseover="toggleGreenBoxHoverEffects(TOGGLE_ON)" onmouseout="toggleGreenBoxHoverEffects(TOGGLE_OFF)">
+				<span id="position-indicator" class="green-box-position-indicator">0,0</span>
+			</div>
 		</div>
 		
 	</div>
 
+	<script type="text/javascript">
+		addListeners();
+	</script>
 </body>
 </html>
