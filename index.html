@@ -73,6 +73,19 @@
 		function updateGreenBoxPositionStatus()
 		{
 			console.log("Updating green box position.");
+			console.log(getCenterPositionData("greenbox"));
+			console.log(getCenterPositionData("redbox"));
+		}
+
+		function getCenterPositionData(elementName)
+		{
+			var elementDetails = document.getElementById(elementName).getBoundingClientRect();
+			console.log(elementDetails);
+			
+			return {
+				xaxis: ((elementDetails.left + elementDetails.width) / 2),
+				yaxis: ((elementDetails.top + elementDetails.height) / 2)
+			};
 		}
 
 		window.onload = statusFunctions();
