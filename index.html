@@ -91,8 +91,8 @@
 			console.log(elementDetails);
 			
 			return {
-				xaxis: ((elementDetails.left + elementDetails.width) / 2),
-				yaxis: ((elementDetails.top + elementDetails.height) / 2)
+				xaxis: (elementDetails.left + (elementDetails.width / 2)),
+				yaxis: (elementDetails.top + (elementDetails.height / 2))
 			};
 		}
 
