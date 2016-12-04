@@ -32,12 +32,18 @@
 		}
 
 		.green-box {
+			display: flex;
 			background: green;
 			width: 50px;
 			height: 50px;
 			border-color: black;
 			border-style: solid;
 			margin: 0;
+			align-self: center;
+			justify-content: center;
+		}
+
+		.green-box-position-indicator {
 			align-self: center;
 		}
 	</style>
@@ -58,6 +64,19 @@
 			}
 		}
 
+		function statusFunctions()
+		{
+			console.log("Starting status functions");
+			setInterval(updateGreenBoxPositionStatus, 500);
+		}
+
+		function updateGreenBoxPositionStatus()
+		{
+			console.log("Updating green box position.");
+		}
+
+		window.onload = statusFunctions();
+
 	</script>
 </head>
 <body>
@@ -66,7 +85,7 @@
 		
 		<div id="redbox" class="red-box">
 				<div id="greenbox" class="green-box" onmouseover="toggleGreenBoxHoverEffects(TOGGLE_ON)" onmouseout="toggleGreenBoxHoverEffects(TOGGLE_OFF)">
-					&nbsp;
+					<span id="position-indicator" class="green-box-position-indicator">0,0</span>
 				</div>
 		</div>
 		
