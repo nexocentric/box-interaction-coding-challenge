@@ -43,15 +43,29 @@
 	</style>
 
 	<script type="text/javascript">
+		var TOGGLE_ON = true;
+		var TOGGLE_OFF = false;
 		
+		function toggleGreenBoxHoverEffects(toggleOn)
+		{
+			if (toggleOn)
+			{
+				document.getElementById("greenbox").style.background = "lightgreen";
+			}
+			else
+			{
+				document.getElementById("greenbox").style.background = "green";
+			}
+		}
+
 	</script>
 </head>
 <body>
 	
 	<div class="container-div">
 		
-		<div id="red-box" class="red-box">
-				<div id="green-box" class="green-box">
+		<div id="redbox" class="red-box">
+				<div id="greenbox" class="green-box" onmouseover="toggleGreenBoxHoverEffects(TOGGLE_ON)" onmouseout="toggleGreenBoxHoverEffects(TOGGLE_OFF)">
 					&nbsp;
 				</div>
 		</div>
