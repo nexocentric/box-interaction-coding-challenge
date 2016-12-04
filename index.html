@@ -7,6 +7,7 @@
 	<style type="text/css">
 		body {
 			margin: 0;
+			padding: 0;
 		}
 
 		.container-div {
@@ -18,7 +19,8 @@
 		}
 
 		.red-box {
-			display: inline-block;
+			display: flex;
+			justify-content: center;
 			background: red;
 			width: 500px;
 			height: 500px;
@@ -36,18 +38,22 @@
 			border-color: black;
 			border-style: solid;
 			margin: 0;
+			align-self: center;
 		}
 	</style>
+
+	<script type="text/javascript">
+		
+	</script>
 </head>
 <body>
 	
 	<div class="container-div">
 		
-		<div class="red-box">
-				<div class="green-box">
+		<div id="red-box" class="red-box">
+				<div id="green-box" class="green-box">
 					&nbsp;
 				</div>
-
 		</div>
 		
 	</div>
